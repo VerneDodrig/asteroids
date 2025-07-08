@@ -1,7 +1,9 @@
 import pygame
+from constants import *
 
 def main():
-    print("Starting Asteroids!")
+    pygame.init()
+    pygame.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
 
 if __name__ == "__main__":

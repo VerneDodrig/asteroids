@@ -17,8 +17,8 @@ def main():
     AsteroidField.containers = (updateable_group)
     Shot.containers = (shots_group, drawable_group, updateable_group)
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-    player = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)  
-    asteroidfield = AsteroidField()  
+    player = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
+    asteroidfield = AsteroidField()
     py_clock = pygame.time.Clock()
     dt = 0
     while True:
@@ -33,7 +33,7 @@ def main():
                 sys.exit()
             for shot in shots_group:
                 if asteroid.collision_check(shot):
-                    asteroid.kill()
+                    asteroid.split()
                     shot.kill()
         for drawable in drawable_group:
             drawable.draw(screen)

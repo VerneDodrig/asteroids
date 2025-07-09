@@ -4,8 +4,11 @@ from player import *
 
 def main():
     pygame.init()
+    updateable_group = pygame.sprite.Group()
+    drawable_group = pygame.sprite.Group()
+    Player.containers = (updateable_group, drawable_group)
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-    player = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
+    player = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)    
     py_clock = pygame.time.Clock()
     dt = 0
     while True:
@@ -13,9 +16,13 @@ def main():
             if event.type == pygame.QUIT:
                 return
         screen.fill("black")
-        dt = py_clock.tick(60)/1000
-        player.draw(screen)
+        updateable_group.update(dt)
+        for drawable in drawable_group:
+            print(drawable)
+            drawable.draw(screen)
         pygame.display.flip() #THIS MUST ALWAYS BE LAST!!!!
+
+        dt = py_clock.tick(60)/1000 #allowed to be past flip function
 
 
 if __name__ == "__main__":
